@@ -24,6 +24,7 @@ Plug 'wfxr/minimap.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'connorholyday/vim-snazzy'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 " snazzy

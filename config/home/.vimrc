@@ -27,6 +27,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 call plug#end()
 
+
 " snazzy
 let g:SnazzyTransparent = 1
 
@@ -55,7 +56,8 @@ colorscheme snazzy
 
 " nerdtree
 nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-r> :NERDTree<CR>
+nnoremap nn :NERDTreeFocus<CR>
+nnoremap <C-r> :NERDTreeRefreshRoot<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 

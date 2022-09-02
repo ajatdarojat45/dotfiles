@@ -17,7 +17,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'dracula/vim'
 Plug 'prettier/vim-prettier'
 Plug 'rstacruz/vim-closer'
-Plug 'tpope/vim-surround'
+"Plug 'tpope/vim-surround'
 Plug 'wakatime/vim-wakatime'
 Plug 'wfxr/minimap.vim'
 "Plug 'tmhedberg/simpylfold'
@@ -63,6 +63,7 @@ nnoremap <C-f> :NERDTreeFind<CR>
 
 "prettier
 nnoremap <C-s> :Prettier<CR> \| :w<CR>
+nnoremap ss :Prettier<CR> \| :w<CR>
 
 " Type jj to exit insert mode quickly.
 inoremap jj <Esc>

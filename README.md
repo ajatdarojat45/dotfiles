@@ -5,3 +5,4 @@
 - vim config
 - tmux config
 - zsh config
+- nvim config

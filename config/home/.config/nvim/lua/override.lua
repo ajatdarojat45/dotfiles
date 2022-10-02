@@ -1,3 +1,5 @@
+local M = {}
+
 M.nvimtree = {
   git = {
     enable = true,
@@ -14,3 +16,5 @@ M.nvimtree = {
     side = "right",
   },
 }
+
+return M

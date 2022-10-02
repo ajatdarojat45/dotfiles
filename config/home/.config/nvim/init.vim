@@ -5,7 +5,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'yggdroot/indentline'
+"Plug 'yggdroot/indentline'
 Plug 'gmoe/vim-espresso'
 Plug 'tpope/vim-fugitive'
 Plug 'valloric/vim-indent-guides'
@@ -29,6 +29,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'fladson/vim-kitty'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 " require lua script
@@ -37,13 +40,14 @@ lua require('override')
 lua require('coc')
 lua require('lua_line')
 lua require('buffer_line')
+lua require('indentblankline')
 
 "airline
 "let g:airline_theme='base16_snazzy'
 
 "INDENTLINE
-let g:indentLine_char = '┊'
-set list lcs=tab:\┊\ 
+"let g:indentLine_char = '┊'
+"set list lcs=tab:\┊\ 
 
 " vim
 syntax on

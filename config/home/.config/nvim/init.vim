@@ -1,5 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
 Plug 'sheerun/vim-polyglot'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -27,15 +27,19 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'raimondi/delimitmate'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'ryanoasis/vim-devicons'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 call plug#end()
 
 " require lua script
 lua require('nvimtree')
 lua require('override')
 lua require('coc')
+lua require('lua_line')
+lua require('buffer_line')
 
 "airline
-let g:airline_theme='base16_snazzy'
+"let g:airline_theme='base16_snazzy'
 
 "INDENTLINE
 let g:indentLine_char = '┊'
@@ -87,8 +91,8 @@ silent! namp <C-G> :GFiles<CR>
 " Ctrl+F: cari file berdasarkan string/regex
 silent! nmap <C-f> :Rg!
 
-" vim-airline
-let g:airline#extensions#tabline#enabled = 1
+" buffer_line
+"let g:airline#extensions#tabline#enabled = 1
 nnoremap <C-h> :bprevious<CR>
 nnoremap <C-l> :bnext<CR>
 nnoremap <C-k> :bfirst<CR>

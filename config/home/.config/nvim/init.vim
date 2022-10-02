@@ -36,6 +36,8 @@ call plug#end()
 
 " require lua script
 lua require('nvimtree')
+lua require('override')
+
 
 " snazzy
 "let g:SnazzyTransparent = 1

@@ -1,6 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
 Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/nerdtree'
+"Plug 'preservim/nerdtree'
+"Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -26,12 +27,15 @@ Plug 'connorholyday/vim-snazzy'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-"Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
-"Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'raimondi/delimitmate'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
+" require lua script
+lua require('nvimtree')
 
 " snazzy
 "let g:SnazzyTransparent = 1
@@ -60,11 +64,17 @@ set clipboard=unnamed
 colorscheme tokyonight-moon
 
 " nerdtree
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap nn :NERDTreeFocus<CR>
-nnoremap <C-r> :NERDTreeRefreshRoot<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+"nnoremap <leader>n :NERDTreeFocus<CR>
+"nnoremap nn :NERDTreeFocus<CR>
+"nnoremap <C-r> :NERDTreeRefreshRoot<CR>
+"nnoremap <C-t> :NERDTreeToggle<CR>
+"nnoremap <C-f> :NERDTreeFind<CR>
+
+" nvim-tree
+nnoremap nn :NvimTreeFocus<CR>
+nnoremap <C-r> :NvimTreeRefresh<CR>
+nnoremap <C-t> :NvimTreeToggle<CR>
+"nnoremap <C-f> :NvimTreeFindFile<CR>
 
 "prettier
 nnoremap <C-s> :Prettier<CR> \| :w<CR>

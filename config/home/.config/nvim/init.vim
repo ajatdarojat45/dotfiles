@@ -31,6 +31,7 @@ call plug#end()
 
 " require lua script
 lua require('nvimtree')
+lua require('override')
 lua require('coc')
 
 "airline

@@ -67,8 +67,8 @@ colorscheme tokyonight-moon
 
 " nvim-tree
 nnoremap nn :NvimTreeFocus<CR>
-nnoremap <C-r> :NvimTreeRefresh<CR>
-nnoremap <C-t> :NvimTreeToggle<CR>
+nnoremap <C-u> :NvimTreeRefresh<CR>
+nnoremap tt :NvimTreeToggle<CR>
 "nnoremap <C-f> :NvimTreeFindFile<CR>
 
 "prettier

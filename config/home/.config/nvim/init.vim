@@ -1,29 +1,22 @@
 call plug#begin('~/.config/nvim/plugged')
-"Plug 'vim-airline/vim-airline'
 Plug 'sheerun/vim-polyglot'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-"Plug 'yggdroot/indentline'
-Plug 'gmoe/vim-espresso'
 Plug 'tpope/vim-fugitive'
 Plug 'valloric/vim-indent-guides'
 Plug 'sheerun/vim-polyglot'
-Plug 'sainnhe/everforest'
-Plug 'joshdick/onedark.vim'
-Plug 'dracula/vim'
 Plug 'prettier/vim-prettier'
 Plug 'tpope/vim-surround'
 Plug 'wakatime/vim-wakatime'
-Plug 'wfxr/minimap.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'connorholyday/vim-snazzy'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
-Plug 'kyazdani42/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
+Plug 'nvim-tree/nvim-tree.lua'
 Plug 'raimondi/delimitmate'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'ryanoasis/vim-devicons'
@@ -32,6 +25,13 @@ Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'fladson/vim-kitty'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'vim-airline/vim-airline'
+"Plug 'yggdroot/indentline'
+"Plug 'gmoe/vim-espresso'
+"Plug 'sainnhe/everforest'
+"Plug 'joshdick/onedark.vim'
+"Plug 'dracula/vim'
+"Plug 'wfxr/minimap.vim'
 call plug#end()
 
 " require lua script

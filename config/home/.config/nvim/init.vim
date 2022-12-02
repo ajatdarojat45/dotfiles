@@ -6,12 +6,10 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'valloric/vim-indent-guides'
-Plug 'sheerun/vim-polyglot'
 Plug 'prettier/vim-prettier'
 Plug 'tpope/vim-surround'
 Plug 'wakatime/vim-wakatime'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'connorholyday/vim-snazzy'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
@@ -19,12 +17,13 @@ Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'raimondi/delimitmate'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'fladson/vim-kitty'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'connorholyday/vim-snazzy'
+"Plug 'ryanoasis/vim-devicons'
+"Plug 'fladson/vim-kitty'
 "Plug 'vim-airline/vim-airline'
 "Plug 'yggdroot/indentline'
 "Plug 'gmoe/vim-espresso'

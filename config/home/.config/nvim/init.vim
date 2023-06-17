@@ -1,9 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
 Plug 'sheerun/vim-polyglot'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'valloric/vim-indent-guides'
 Plug 'prettier/vim-prettier'
@@ -21,6 +18,22 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+" lspconfig
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip'
+
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
+"Plug 'glepnir/lspsaga.nvim'
 "Plug 'connorholyday/vim-snazzy'
 "Plug 'ryanoasis/vim-devicons'
 "Plug 'fladson/vim-kitty'
@@ -33,13 +46,19 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 "Plug 'wfxr/minimap.vim'
 call plug#end()
 
+let mapleader=" "
+nnoremap <SPACE> <Nop>
+
 " require lua script
 lua require('nvimtree')
 lua require('override')
-lua require('coc')
+"lua require('coc')
 lua require('lua_line')
 lua require('buffer_line')
 lua require('indentblankline')
+lua require('mason_lspconfig')
+lua require('lsp_config')
+lua require('telescope_nvim')
 
 "airline
 "let g:airline_theme='base16_snazzy'
@@ -86,13 +105,13 @@ nnoremap Y y$
 
 " fzf
 " Ctrl+P: cari file di direktori
-silent! nmap <C-P> :Files<CR>
+"silent! nmap <C-P> :Files<CR>
 
 " Ctrl+G: cari file di repository
-silent! namp <C-G> :GFiles<CR>
+"silent! namp <C-G> :GFiles<CR>
 
 " Ctrl+F: cari file berdasarkan string/regex
-silent! nmap <C-f> :Rg!
+"silent! nmap <C-f> :Rg!
 
 " buffer_line
 "let g:airline#extensions#tabline#enabled = 1
@@ -109,3 +128,4 @@ let g:minimap_auto_start_win_enter = 1
 
 " markdown preview
 nnoremap mp :MarkdownPreview<CR>
+

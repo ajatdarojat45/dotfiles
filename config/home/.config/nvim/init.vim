@@ -120,6 +120,7 @@ nnoremap <C-l> :bnext<CR>
 nnoremap <C-k> :bfirst<CR>
 nnoremap <C-j> :blast<CR>
 nnoremap <C-d> :bdelete<CR>
+nnoremap <leader>da :%bdelete<CR>
 
 " minimap
 let g:minimap_width = 10

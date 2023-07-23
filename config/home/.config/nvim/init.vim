@@ -1,9 +1,10 @@
 call plug#begin('~/.config/nvim/plugged')
 Plug 'sheerun/vim-polyglot'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'valloric/vim-indent-guides'
-Plug 'prettier/vim-prettier'
+Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --omit=dev' }
 Plug 'tpope/vim-surround'
 Plug 'wakatime/vim-wakatime'
 Plug 'terryma/vim-multiple-cursors'
@@ -18,22 +19,14 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" telescope
+"Telescope
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
-" lspconfig
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'L3MON4D3/LuaSnip'
-
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" FZF
 "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 "Plug 'junegunn/fzf.vim'
-"Plug 'glepnir/lspsaga.nvim'
+
+" Plug 'prettier/vim-prettier'
 "Plug 'connorholyday/vim-snazzy'
 "Plug 'ryanoasis/vim-devicons'
 "Plug 'fladson/vim-kitty'
@@ -46,20 +39,13 @@ Plug 'L3MON4D3/LuaSnip'
 "Plug 'wfxr/minimap.vim'
 call plug#end()
 
-let mapleader=" "
-nnoremap <SPACE> <Nop>
-
 " require lua script
 lua require('nvimtree')
 lua require('override')
-"lua require('coc')
+lua require('coc')
 lua require('lua_line')
 lua require('buffer_line')
 lua require('indentblankline')
-lua require('mason_lspconfig')
-lua require('lsp_config')
-lua require('telescope_nvim')
-
 "airline
 "let g:airline_theme='base16_snazzy'
 
@@ -68,6 +54,8 @@ lua require('telescope_nvim')
 "set list lcs=tab:\┊\ 
 
 " vim
+let mapleader = " " " map leader to space
+
 syntax on
 set number
 set relativenumber
@@ -83,15 +71,17 @@ set expandtab
 set clipboard=unnamed
 colorscheme tokyonight-moon
 
+"vim
+nnoremap <leader>q :q<CR>
+
 " nvim-tree
-nnoremap nn :NvimTreeFocus<CR>
-nnoremap <C-u> :NvimTreeRefresh<CR>
-nnoremap tt :NvimTreeToggle<CR>
+nnoremap <leader>e :NvimTreeFocus<CR>
+nnoremap <leader>er :NvimTreeRefresh<CR>
+nnoremap <leader>ee :NvimTreeToggle<CR>
 "nnoremap <C-f> :NvimTreeFindFile<CR>
 
 "prettier
-nnoremap <C-s> :Prettier<CR> \| :w<CR>
-nnoremap ss :Prettier<CR> \| :w<CR>
+nnoremap <leader>s :Prettier<CR> \| :w<CR>
 
 " Type jj to exit insert mode quickly.
 inoremap jj <Esc>
@@ -102,6 +92,9 @@ nnoremap O O<esc>
 
 " Yank from cursor to the end of line.
 nnoremap Y y$
+
+" Yank all line
+nnoremap <leader>yy :%y<CR>
 
 " fzf
 " Ctrl+P: cari file di direktori
@@ -115,12 +108,11 @@ nnoremap Y y$
 
 " buffer_line
 "let g:airline#extensions#tabline#enabled = 1
-nnoremap <C-h> :bprevious<CR>
-nnoremap <C-l> :bnext<CR>
-nnoremap <C-k> :bfirst<CR>
-nnoremap <C-j> :blast<CR>
-nnoremap <C-d> :bdelete<CR>
-nnoremap <leader>da :%bdelete<CR>
+nnoremap <leader>h :bprevious<CR>
+nnoremap <leader>l :bnext<CR>
+nnoremap <leader>k :bfirst<CR>
+nnoremap <leader>j :blast<CR>
+nnoremap <leader>d :bdelete<CR>
 
 " minimap
 let g:minimap_width = 10
@@ -130,3 +122,8 @@ let g:minimap_auto_start_win_enter = 1
 " markdown preview
 nnoremap mp :MarkdownPreview<CR>
 
+" telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>

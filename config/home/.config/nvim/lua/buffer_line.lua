@@ -4,6 +4,11 @@ require("bufferline").setup{
       indicator = {
         style = 'underline',
       },
+      hover= {
+        enabled = true,
+        delay = 200,
+        reveal = {'close'}
+      },
       diagnostics = 'coc',
       diagnostics_indicator = function(count, level)
         local icon = level:match("error") and " " or " "

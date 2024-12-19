@@ -1,0 +1,32 @@
+
+[env]
+  TERM = "xterm-256color"
+
+[general]
+  import = [
+    "~/.config/alacritty/themes/tokyonight.toml"
+  ]
+
+[window]
+  padding.x = 3
+  padding.y = 5
+  #startup_mode = "Fullscreen"
+  decorations = "buttonless"
+  #opacity = 0.98
+  #option_as_alt = "Both"
+  title = "Alacritty"
+  dynamic_title = true
+
+[font]
+  normal = { family = "Hack Nerd Font", style = "Regular" }
+  bold = { family = "Hack Nerd Font", style = "Bold" }
+  italic = { family = "Hack Nerd Font", style = "Italic" }
+  size = 14.0
+
+[cursor]
+  style.shape = "Block"
+  vi_mode_style.blinking = "Off"
+
+
+[mouse]
+  hide_when_typing = true

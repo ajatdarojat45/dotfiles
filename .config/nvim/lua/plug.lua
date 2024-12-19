@@ -1,3 +1,4 @@
+
 vim.cmd([[
   call plug#begin('~/.config/nvim/plugged')
 
@@ -31,7 +32,6 @@ vim.cmd([[
   Plug 'folke/flash.nvim'
 
   " Manajemen Buffer & Tab
-  " Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
   Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
   Plug 'nvim-tree/nvim-tree.lua'
 
@@ -43,20 +43,20 @@ vim.cmd([[
   " Productivity Enhancements
   Plug 'wakatime/vim-wakatime'
   Plug 'terryma/vim-multiple-cursors'
-	Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown' }
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown' }
   Plug 'numToStr/Comment.nvim'
   Plug 'folke/todo-comments.nvim'
   Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
   " UI & Tampilan
   Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+  Plug 'ayu-theme/ayu-vim'
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'nvim-tree/nvim-web-devicons'
   Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'valloric/vim-indent-guides'
   Plug 'goolord/alpha-nvim'
-  Plug 'dracula/vim', { 'as': 'dracula' }
-  Plug 'Mofiqul/vscode.nvim'
+  Plug 'f-person/auto-dark-mode.nvim'
 
   " Bracket & Delimiter Management
   Plug 'raimondi/delimitmate'

@@ -37,25 +37,42 @@ export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 export PATH="$HOME/.fastlane/bin:$PATH"
 export PATH="$HOME/.fastlane/bin/fastlane_lib:$PATH"
 
-# custom function
+# fzf
+source <(fzf --zsh)
+export FZF_DEFAULT_OPTS="--bind 'Ctrl-j:down,Ctrl-k:up'"
+
+export FZF_CTRL_R_OPTS="
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
+
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+export FZF_ALT_C_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'tree -C {}'"
+
 ## find file and directory
 function findAll(){
   find . -name "$1" -prune | xargs du -chs
 }
 
-## delete directory
+# delete directory
 function deleteDir(){
   find . -name "$1" -type d -prune | xargs rm -rf
 }
 
 # Fuzzy CD ke direktori
-fzf_cd() {
+fcd() {
   local dir
-  dir=$(find . -type d | fzf --preview "ls -la {}") && cd "$dir"
+  dir=$(find . -type d | fzf) && cd "$dir"
 }
 
 # Cari file dan buka di editor favorit
-fzf_edit() {
+fcf() {
   local file
   file=$(fzf --preview "bat --style=numbers --color=always {}") && nvim "$file"
 }

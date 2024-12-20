@@ -68,7 +68,7 @@ function deleteDir(){
 # Fuzzy CD ke direktori
 fcd() {
   local dir
-  dir=$(find . -type d | fzf) && cd "$dir"
+  dir=$(find . -type d | fzf --preview "ls -la {}") && cd "$dir"
 }
 
 # Cari file dan buka di editor favorit

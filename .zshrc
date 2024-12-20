@@ -72,9 +72,18 @@ fcd() {
 }
 
 # Cari file dan buka di editor favorit
-fcf() {
+ff() {
   local file
   file=$(fzf --preview "bat --style=numbers --color=always {}") && nvim "$file"
+}
+
+fh() {
+  local cmd
+  cmd=$(history | fzf --preview "echo {}" --height=40% --reverse --bind "Ctrl-r:reload(history)" --tiebreak=index) 
+  if [[ -n $cmd ]]; then
+    # Eksekusi perintah yang dipilih
+    eval "$(echo $cmd | sed -E 's/^[ ]*[0-9]+\*?[ ]+//')"
+  fi
 }
 
 ## PHPBrew

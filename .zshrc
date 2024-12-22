@@ -66,7 +66,7 @@ function deleteDir(){
 }
 
 # Fuzzy CD ke direktori
-fcd() {
+fd() {
   local dir
   dir=$(find . -type d | fzf --preview "ls -la {}") && cd "$dir"
 }

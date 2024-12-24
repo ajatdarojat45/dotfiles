@@ -30,6 +30,7 @@ opt.guicursor = "a:block"
 opt.mouse = ""
 opt.directory = '/tmp'
 opt.swapfile = false
+opt.scrolloff = 8
 
 -- Enable folding
 opt.foldenable = true                       -- Aktifkan folding
@@ -53,80 +54,82 @@ g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 g.mapleader = " "
 
+
+local opts = { noremap = true, silent = true }
+
 -- Key mappings
-api.nvim_set_keymap('n', '<leader>bd', ':%bd<CR>', { noremap = true, silent = true }) -- Close buffer without saving
-api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = true, silent = true })            -- Exit insert mode
-api.nvim_set_keymap('n', 'o', 'o<Esc>', { noremap = true, silent = true })            -- Open a new line below
-api.nvim_set_keymap('n', 'O', 'O<Esc>', { noremap = true, silent = true })            -- Open a new line above
+api.nvim_set_keymap('n', '<leader>bd', ':%bd<CR>', opts) -- Close buffer without saving
+api.nvim_set_keymap('i', 'jj', '<Esc>', opts)            -- Exit insert mode
+api.nvim_set_keymap('n', 'o', 'o<Esc>', opts)            -- Open a new line below
+api.nvim_set_keymap('n', 'O', 'O<Esc>', opts)            -- Open a new line above
 
 -- Insert 
-local opts = { noremap = true, silent = true }
 api.nvim_set_keymap("n", "is", "I", opts) -- insert in the begining of line
 api.nvim_set_keymap("n", "ie", "A", opts) -- insert in the end of line
 api.nvim_set_keymap("n", "in", "a", opts) -- insert in the next cursor
 api.nvim_set_keymap("n", "iw", "ea", opts) -- insert in the next word
 
 -- Delete
-api.nvim_set_keymap('n', '<leader>dd', ':%d<CR>', { noremap = true, silent = true }) -- Delete whole file
-api.nvim_set_keymap('n', 'D', '0d$', { noremap = true, silent = true })              -- Delete whole line
-api.nvim_set_keymap('n', 'de', 'd$', { noremap = true, silent = true })              -- Delete from cursor to the end of the line
-api.nvim_set_keymap('n', 'ds', 'd0', { noremap = true, silent = true })              -- Delete from cursor to the start of the line
+api.nvim_set_keymap('n', '<leader>dd', ':%d<CR>', opts) -- Delete whole file
+api.nvim_set_keymap('n', 'D', '0d$', opts)              -- Delete whole line
+api.nvim_set_keymap('n', 'de', 'd$', opts)              -- Delete from cursor to the end of the line
+api.nvim_set_keymap('n', 'ds', 'd0', opts)              -- Delete from cursor to the start of the line
 
 -- yank
-api.nvim_set_keymap('n', '<leader>yy', ':%y<CR>', { noremap = true, silent = true }) -- Yank whole file
-api.nvim_set_keymap('n', 'Y', 'Y$', { noremap = true, silent = true })               -- Yank whole line
-api.nvim_set_keymap('n', 'ye', 'y$', { noremap = true, silent = true })              -- Yank from cursor to the end of the line
-api.nvim_set_keymap('n', 'ys', 'y0', { noremap = true, silent = true })              -- Yank from cursor to the start of the line
+api.nvim_set_keymap('n', '<leader>yy', ':%y<CR>', opts) -- Yank whole file
+api.nvim_set_keymap('n', 'Y', 'Y$', opts)               -- Yank whole line
+api.nvim_set_keymap('n', 'ye', 'y$', opts)              -- Yank from cursor to the end of the line
+api.nvim_set_keymap('n', 'ys', 'y0', opts)              -- Yank from cursor to the start of the line
 
 -- Visual mode indentation
-api.nvim_set_keymap('v', '<', '<gv', { noremap = true, silent = true }) -- Unindent selected textsett
-api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true }) -- Indent selected text
+api.nvim_set_keymap('v', '<', '<gv', opts) -- Unindent selected textsett
+api.nvim_set_keymap('v', '>', '>gv', opts) -- Indent selected text
 
 -- Save and Quit
-api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })                            -- Save file
-api.nvim_set_keymap('n', '<leader>q', ':q<CR>', { noremap = true, silent = true })                            -- Quit file
-api.nvim_set_keymap('n', '<leader>wq', ':wq<CR>', { noremap = true, silent = true })                          -- Save and quit
-api.nvim_set_keymap('n', '<leader>qq', ':qa!<CR>', { noremap = true, silent = true })                         -- Quit all
-api.nvim_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true }) -- Format file
+api.nvim_set_keymap('n', '<leader>w', ':w<CR>', opts)                            -- Save file
+api.nvim_set_keymap('n', '<leader>q', ':q<CR>', opts)                            -- Quit file
+api.nvim_set_keymap('n', '<leader>wq', ':wq<CR>', opts)                          -- Save and quit
+api.nvim_set_keymap('n', '<leader>qq', ':qa!<CR>', opts)                         -- Quit all
+api.nvim_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts) -- Format file
 -- api.nvim_set_keymap('n', '<leader>s', '<cmd>lua vim.lsp.buf.format()<CR> | :w<CR>', { noremap = true, silent = true }) -- Format and save using lsp                                                  -- Format and save file
-api.nvim_set_keymap('n', '<leader>s', ':lua vim.cmd("Prettier") vim.cmd("w")<CR>', { noremap = true, silent = true })
+api.nvim_set_keymap('n', '<leader>s', ':lua vim.cmd("Prettier") vim.cmd("w")<CR>', opts)
 
 -- Search
-api.nvim_set_keymap('n', '<leader>/', '/<CR>', { noremap = true, silent = false }) -- Start forward search
-api.nvim_set_keymap('n', '<leader>?', '?<CR>', { noremap = true, silent = false }) -- Start reverse search
-api.nvim_set_keymap('n', '<leader>n', 'n', { noremap = true, silent = true })      -- Next search result
-api.nvim_set_keymap('n', '<leader>N', 'N', { noremap = true, silent = true })      -- Previous search result
+api.nvim_set_keymap('n', '<leader>/', '/<CR>', opts) -- Start forward search
+api.nvim_set_keymap('n', '<leader>?', '?<CR>', opts) -- Start reverse search
+api.nvim_set_keymap('n', '<leader>n', 'n', opts)      -- Next search result
+api.nvim_set_keymap('n', '<leader>N', 'N', opts)      -- Previous search result
 
 -- Undo/Redo
-api.nvim_set_keymap('n', '<leader>u', 'u', { noremap = true, silent = true })     -- Undo
-api.nvim_set_keymap('n', '<leader>r', '<C-r>', { noremap = true, silent = true }) -- Redo
+api.nvim_set_keymap('n', '<leader>u', 'u', opts)     -- Undo
+api.nvim_set_keymap('n', '<leader>r', '<C-r>', opts) -- Redo
 
 -- bufferline
-api.nvim_set_keymap('n', '<S-h>', ':bprevious<CR>', { noremap = true, silent = true })                          -- Go to previous buffer
-api.nvim_set_keymap('n', '<S-l>', ':bnext<CR>', { noremap = true, silent = true })                              -- Go to next buffer
-api.nvim_set_keymap('n', '<S-k>', ':bfirst<CR>', { noremap = true, silent = true })                             -- Go to first buffer
-api.nvim_set_keymap('n', '<S-j>', ':blast<CR>', { noremap = true, silent = true })                              -- Go to last buffer
---vim.api.nvim_set_keymap('n', '<S-r>', ':bdelete<CR>', { noremap = true, silent = true })
-api.nvim_set_keymap('n', '<S-r>', ':lua vim.api.nvim_buf_delete(0, {})<CR>', { noremap = true, silent = true }) -- Remove buffer
+api.nvim_set_keymap('n', '<S-h>', ':bprevious<CR>', opts)                          -- Go to previous buffer
+api.nvim_set_keymap('n', '<S-l>', ':bnext<CR>', opts)                              -- Go to next buffer
+api.nvim_set_keymap('n', '<S-k>', ':bfirst<CR>', opts)                             -- Go to first buffer
+api.nvim_set_keymap('n', '<S-j>', ':blast<CR>', opts)                              -- Go to last buffer
+--vim.api.nvim_set_keymap('n', '<S-r>', ':bdelete<CR>', opts)
+api.nvim_set_keymap('n', '<S-r>', ':lua vim.api.nvim_buf_delete(0, {})<CR>', opts) -- Remove buffer
 
 -- Pencarian yang Lebih Cepat
-api.nvim_set_keymap('n', '<leader>/', ':noh<CR>', { noremap = true, silent = true }) -- Hapus highlight pencarian
-api.nvim_set_keymap('n', 'n', 'nzzzv', { noremap = true, silent = true })            -- Pencarian berikutnya dan posisikan di tengah
-api.nvim_set_keymap('n', 'N', 'Nzzzv', { noremap = true, silent = true })            -- Pencarian sebelumnya dan posisikan di tengah
+api.nvim_set_keymap('n', '<leader>/', ':noh<CR>', opts) -- Hapus highlight pencarian
+api.nvim_set_keymap('n', 'n', 'nzzzv', opts)            -- Pencarian berikutnya dan posisikan di tengah
+api.nvim_set_keymap('n', 'N', 'Nzzzv', opts)            -- Pencarian sebelumnya dan posisikan di tengah
 
 -- Pindah Ke Awal/Akhir Baris
-api.nvim_set_keymap('n', '<leader>h', '^', { noremap = true, silent = true })  -- Pindah ke awal baris
-api.nvim_set_keymap('n', '<leader>l', 'g_', { noremap = true, silent = true }) -- Pindah ke akhir baris
+api.nvim_set_keymap('n', '<leader>h', '^', opts)  -- Pindah ke awal baris
+api.nvim_set_keymap('n', '<leader>l', 'g_', opts) -- Pindah ke akhir baris
 
 -- Fold
-api.nvim_set_keymap('n', 'zc', 'zc', { noremap = true, silent = true }) -- Tutup fold
-api.nvim_set_keymap('n', 'zo', 'zo', { noremap = true, silent = true }) -- Buka fold
-api.nvim_set_keymap('n', 'zM', 'zM', { noremap = true, silent = true }) -- Tutup semua fold
-api.nvim_set_keymap('n', 'zR', 'zR', { noremap = true, silent = true }) -- Buka semua fold
-api.nvim_set_keymap('n', 'za', 'za', { noremap = true, silent = true }) -- Toggle fold
+api.nvim_set_keymap('n', 'zc', 'zc', opts) -- Tutup fold
+api.nvim_set_keymap('n', 'zo', 'zo', opts) -- Buka fold
+api.nvim_set_keymap('n', 'zM', 'zM', opts) -- Tutup semua fold
+api.nvim_set_keymap('n', 'zR', 'zR', opts) -- Buka semua fold
+api.nvim_set_keymap('n', 'za', 'za', opts) -- Toggle fold
 
 -- Markdown Preview
-api.nvim_set_keymap('n', 'mp', ':MarkdownPreview<CR>', { noremap = true, silent = true })
+api.nvim_set_keymap('n', 'mp', ':MarkdownPreview<CR>', opts)
 
 -- lazygit
-api.nvim_set_keymap('n', '<leader>gg', ':LazyGit<CR>', { noremap = true, silent = true })
+api.nvim_set_keymap('n', '<leader>gg', ':LazyGit<CR>', opts)

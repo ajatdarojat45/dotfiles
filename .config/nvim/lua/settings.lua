@@ -30,7 +30,7 @@ opt.guicursor = "a:block"
 opt.mouse = ""
 opt.directory = '/tmp'
 opt.swapfile = false
-opt.scrolloff = 8
+--opt.scrolloff = 8
 
 -- Enable folding
 opt.foldenable = true                       -- Aktifkan folding
@@ -63,27 +63,29 @@ api.nvim_set_keymap('i', 'jj', '<Esc>', opts)            -- Exit insert mode
 api.nvim_set_keymap('n', 'o', 'o<Esc>', opts)            -- Open a new line below
 api.nvim_set_keymap('n', 'O', 'O<Esc>', opts)            -- Open a new line above
 
--- Insert 
-api.nvim_set_keymap("n", "is", "I", opts) -- insert in the begining of line
-api.nvim_set_keymap("n", "ie", "A", opts) -- insert in the end of line
-api.nvim_set_keymap("n", "in", "a", opts) -- insert in the next cursor
-api.nvim_set_keymap("n", "iw", "ea", opts) -- insert in the next word
-
 -- Delete
 api.nvim_set_keymap('n', '<leader>dd', ':%d<CR>', opts) -- Delete whole file
-api.nvim_set_keymap('n', 'D', '0d$', opts)              -- Delete whole line
-api.nvim_set_keymap('n', 'de', 'd$', opts)              -- Delete from cursor to the end of the line
 api.nvim_set_keymap('n', 'ds', 'd0', opts)              -- Delete from cursor to the start of the line
 
 -- yank
 api.nvim_set_keymap('n', '<leader>yy', ':%y<CR>', opts) -- Yank whole file
-api.nvim_set_keymap('n', 'Y', 'Y$', opts)               -- Yank whole line
-api.nvim_set_keymap('n', 'ye', 'y$', opts)              -- Yank from cursor to the end of the line
 api.nvim_set_keymap('n', 'ys', 'y0', opts)              -- Yank from cursor to the start of the line
 
 -- Visual mode indentation
 api.nvim_set_keymap('v', '<', '<gv', opts) -- Unindent selected textsett
 api.nvim_set_keymap('v', '>', '>gv', opts) -- Indent selected text
+api.nvim_set_keymap(
+    "v",                     -- Mode: Visual
+    "J",                     -- Key to map
+    ":m '>+1<CR>gv=gv",      -- Command to execute
+    { noremap = true, silent = true } -- Options
+)
+api.nvim_set_keymap(
+    "v",                     -- Mode: Visual
+    "K",                     -- Key to map
+    ":m '<-2<CR>gv=gv",      -- Command to execute
+    { noremap = true, silent = true } -- Options
+)
 
 -- Save and Quit
 api.nvim_set_keymap('n', '<leader>w', ':w<CR>', opts)                            -- Save file
@@ -101,8 +103,8 @@ api.nvim_set_keymap('n', '<leader>n', 'n', opts)      -- Next search result
 api.nvim_set_keymap('n', '<leader>N', 'N', opts)      -- Previous search result
 
 -- Undo/Redo
-api.nvim_set_keymap('n', '<leader>u', 'u', opts)     -- Undo
-api.nvim_set_keymap('n', '<leader>r', '<C-r>', opts) -- Redo
+api.nvim_set_keymap('n', 'u', 'u', opts)     -- Undo
+api.nvim_set_keymap('n', 'r', '<C-r>', opts) -- Redo
 
 -- bufferline
 api.nvim_set_keymap('n', '<S-h>', ':bprevious<CR>', opts)                          -- Go to previous buffer

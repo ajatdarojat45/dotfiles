@@ -54,9 +54,7 @@ g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 g.mapleader = " "
 
-
 local opts = { noremap = true, silent = true }
-
 -- Key mappings
 api.nvim_set_keymap('n', '<leader>bd', ':%bd<CR>', opts) -- Close buffer without saving
 api.nvim_set_keymap('i', 'jj', '<Esc>', opts)            -- Exit insert mode
@@ -70,6 +68,11 @@ api.nvim_set_keymap('n', 'ds', 'd0', opts)              -- Delete from cursor to
 -- yank
 api.nvim_set_keymap('n', '<leader>yy', ':%y<CR>', opts) -- Yank whole file
 api.nvim_set_keymap('n', 'ys', 'y0', opts)              -- Yank from cursor to the start of the line
+api.nvim_set_keymap('v', '<leader>p', '"_dP', opts) -- Replace selected text with clipboard content without overwriting clipboard
+api.nvim_set_keymap('v', '<leader>y', '"+y', opts) -- Copy selected text to the system clipboard
+api.nvim_set_keymap('n', '<leader>y', '"+y', opts) -- Copy current line or specified text range to the system clipboard
+api.nvim_set_keymap('n', '<leader>Y', 'gg"+yG', opts) -- Copy the entire file content to the system clipboard
+
 
 -- Visual mode indentation
 api.nvim_set_keymap('v', '<', '<gv', opts) -- Unindent selected textsett
@@ -78,13 +81,13 @@ api.nvim_set_keymap(
     "v",                     -- Mode: Visual
     "J",                     -- Key to map
     ":m '>+1<CR>gv=gv",      -- Command to execute
-    { noremap = true, silent = true } -- Options
+    opts -- Options
 )
 api.nvim_set_keymap(
     "v",                     -- Mode: Visual
     "K",                     -- Key to map
     ":m '<-2<CR>gv=gv",      -- Command to execute
-    { noremap = true, silent = true } -- Options
+    opts -- Options
 )
 
 -- Save and Quit

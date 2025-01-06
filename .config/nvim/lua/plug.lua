@@ -19,6 +19,7 @@ vim.cmd([[
   Plug 'onsails/lspkind.nvim'
   Plug 'williamboman/mason.nvim'
   Plug 'williamboman/mason-lspconfig.nvim'
+  Plug 'zbirenbaum/copilot.lua'
 
   " Code Formatting dan Linting
   Plug 'jose-elias-alvarez/null-ls.nvim'
@@ -46,7 +47,6 @@ vim.cmd([[
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown' }
   Plug 'numToStr/Comment.nvim'
   Plug 'folke/todo-comments.nvim'
-  Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
   " UI & Tampilan
   Plug 'folke/tokyonight.nvim', { 'branch': 'main' }

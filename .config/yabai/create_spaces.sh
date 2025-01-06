@@ -1,4 +1,3 @@
-
 #!/bin/sh
 
 DESIRED_SPACES_PER_DISPLAY=4

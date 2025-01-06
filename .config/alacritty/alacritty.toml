@@ -10,7 +10,7 @@
 [window]
   padding.x = 3
   padding.y = 5
-  startup_mode = "Fullscreen"
+  #startup_mode = "Fullscreen"
   decorations = "buttonless"
   #opacity = 0.98
   #option_as_alt = "Both"

@@ -121,9 +121,6 @@ export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
-# starship
-eval "$(starship init zsh)"
-
 # yazi
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -134,4 +131,5 @@ function y() {
   rm -f -- "$tmp"
 }
 
+# zoxide
 eval "$(zoxide init zsh)"

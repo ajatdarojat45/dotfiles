@@ -69,8 +69,8 @@ echo "Installing Mac App Store Apps..."
 mas install 1510445899 #Meeter
 
 # Copying and checking out configuration files
-DOTFILES_DIR=~/project/dotfiles
-REPO_URL="https://github.com/username/dotfiles.git" # Ganti dengan URL repository Anda
+DOTFILES_DIR=~/Projects/dotfiles
+REPO_URL="https://github.com/ajatdarojat45/dotfiles.git" 
 
 # Clone repository if folder does not exist 
 if [ ! -d "$DOTFILES_DIR" ]; then

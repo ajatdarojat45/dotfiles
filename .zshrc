@@ -1,7 +1,3 @@
-# aliases
-alias python="python3"
-alias pip="pip3"
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -133,3 +129,92 @@ function y() {
 
 # zoxide
 eval "$(zoxide init zsh)"
+
+# aliases
+## python
+alias python="python3"
+alias pip="pip3"
+
+## Navigation and file management
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ~="cd ~"
+alias c="clear"
+alias cls="clear"
+alias cz="clear && exit"
+
+alias mkdir="mkdir -p"
+alias rm="rm -i"   # Konfirmasi sebelum menghapus file
+alias rmr="rm -rf -i"   # Konfirmasi sebelum menghapus direktori
+alias cp="cp -i"   # Konfirmasi sebelum menyalin
+alias cpr="cp -r -i"   # Konfirmasi sebelum menyalin
+alias mv="mv -i"   # Konfirmasi sebelum memindahkan
+alias l="ls -lah"
+alias ll="ls -lAh"
+alias ls="ls -G"   # Jika di macOS, gunakan `ls -G`
+alias df="df -h"  # Cek penggunaan disk
+alias free="vm_stat"  # Cek penggunaan RAM di macOS
+
+
+## Tmux
+alias t="tmux"
+
+## Nvim
+alias v="nvim"
+alias vrc="nvim ~/.zshrc"
+alias vtmux="nvim ~/.tmux.conf"
+alias vinit="nvim ~/.config/nvim/init.lua"
+alias vplug="nvim ~/.vimrc"
+alias vsession="nvim -S Session.vim"
+alias vgrep="grep -rnw ."
+
+## Git
+alias g="git"
+alias ga="git add"
+alias gc="git commit -m"
+alias gca="git commit --amend"
+alias gcan="git commit --amend --no-edit"
+alias gcl="git clone"
+alias gpl="git pull"
+alias gp="git push"
+alias gpf="git push --force-with-lease"
+alias gco="git checkout"
+alias gs="git status"
+alias gl="git log --oneline --graph --decorate"
+alias gb="git branch"
+alias gd="git diff"
+alias gst="git stash"
+alias gstp="git stash pop"
+
+## Node
+alias nodev="node -v"
+alias nodemon="npx nodemon"
+alias npkg="cat package.json | jq '.dependencies'"
+alias npkgl="cat package-lock.json | jq '.dependencies'"
+alias tsx="npx tsx"  # Jalankan file TypeScript tanpa compile
+alias tsc="npx tsc"  # Compile TypeScript
+alias lint="npx eslint . --fix"
+
+## NPM
+alias ni="npm install"
+alias nr="npm run"
+alias ns="npm start"
+alias nt="npm test"
+alias nrd="npm run dev"
+alias nrb="npm run build"
+alias nrg="npm run generate"
+alias npx="npx"
+
+## Terminal & System
+alias x="exit"
+alias q="exit"
+alias bye="exit"
+alias restart-zsh="exec zsh"
+alias reload="source ~/.zshrc"
+alias hist="history | grep"
+alias path="echo $PATH | tr ':' '\n'"
+alias myip="curl ifconfig.me"
+alias ports="lsof -i -P -n | grep LISTEN"
+alias ping="ping -c 5"
+

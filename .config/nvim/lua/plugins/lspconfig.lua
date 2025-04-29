@@ -31,10 +31,35 @@ api.nvim_create_autocmd('LspAttach', {
     keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
     keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
     keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-    keymap.set('n', 'ch', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+    --   keymap.set('n', 'ch', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+    keymap.set('n', 'ch', function()
+      vim.lsp.buf.hover()
+      vim.defer_fn(function()
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          local config = vim.api.nvim_win_get_config(win)
+          if config.relative ~= '' then
+            vim.api.nvim_set_current_win(win)
+            break
+          end
+        end
+      end, 100) -- Delay to ensure hover has appeared
+    end, opts)
     keymap.set('n', 'cr', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
     keymap.set({ 'n', 'x' }, 'cf', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
     keymap.set('n', 'ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+    --   keymap.set('n', 'cd', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
+    keymap.set('n', 'cd', function()
+      vim.diagnostic.open_float()
+      vim.defer_fn(function()
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          local config = vim.api.nvim_win_get_config(win)
+          if config.relative ~= '' then
+            vim.api.nvim_set_current_win(win)
+            break
+          end
+        end
+      end, 100)
+    end, opts)
   end,
 })
 

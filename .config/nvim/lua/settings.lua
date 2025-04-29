@@ -22,9 +22,12 @@ opt.splitright = true     -- Put new windows right of current
 opt.completeopt = "menu,menuone,noselect,preview"
 opt.cursorline = true     -- Enable highlighting of the current line
 opt.ignorecase = true     -- Ignore case
-opt.list = false           -- Show some invisible characters (tabs...
+opt.list = false          -- Show some invisible characters (tabs...
 opt.relativenumber = true -- Relative line numbers
-opt.wrap = false          -- Disable line wrap
+opt.wrap = true           -- Disable line wrap
+opt.linebreak = true      -- Wrap at word boundaries, not mid-word
+opt.breakindent = true    -- Indent wrapped lines to match line start
+--opt.showbreak = '↪ ' -- Show this prefix on wrapped lines (optional)
 opt.signcolumn = "yes"
 opt.guicursor = "n-v-c-sm:block,i-ci-ve:block-blinkon1,r-cr-o:block"
 opt.mouse = ""
@@ -68,42 +71,42 @@ api.nvim_set_keymap('n', 'ds', 'd0', opts)              -- Delete from cursor to
 -- yank
 api.nvim_set_keymap('n', '<leader>yy', ':%y<CR>', opts) -- Yank whole file
 api.nvim_set_keymap('n', 'ys', 'y0', opts)              -- Yank from cursor to the start of the line
-api.nvim_set_keymap('v', '<leader>p', '"_dP', opts) -- Replace selected text with clipboard content without overwriting clipboard
-api.nvim_set_keymap('v', '<leader>y', '"+y', opts) -- Copy selected text to the system clipboard
-api.nvim_set_keymap('n', '<leader>y', '"+y', opts) -- Copy current line or specified text range to the system clipboard
-api.nvim_set_keymap('n', '<leader>Y', 'gg"+yG', opts) -- Copy the entire file content to the system clipboard
+api.nvim_set_keymap('v', '<leader>p', '"_dP', opts)     -- Replace selected text with clipboard content without overwriting clipboard
+api.nvim_set_keymap('v', '<leader>y', '"+y', opts)      -- Copy selected text to the system clipboard
+api.nvim_set_keymap('n', '<leader>y', '"+y', opts)      -- Copy current line or specified text range to the system clipboard
+api.nvim_set_keymap('n', '<leader>Y', 'gg"+yG', opts)   -- Copy the entire file content to the system clipboard
 
 
 -- Visual mode indentation
 api.nvim_set_keymap('v', '<', '<gv', opts) -- Unindent selected textsett
 api.nvim_set_keymap('v', '>', '>gv', opts) -- Indent selected text
 api.nvim_set_keymap(
-    "v",                     -- Mode: Visual
-    "J",                     -- Key to map
-    ":m '>+1<CR>gv=gv",      -- Command to execute
-    opts -- Options
+  "v",                                     -- Mode: Visual
+  "J",                                     -- Key to map
+  ":m '>+1<CR>gv=gv",                      -- Command to execute
+  opts                                     -- Options
 )
 api.nvim_set_keymap(
-    "v",                     -- Mode: Visual
-    "K",                     -- Key to map
-    ":m '<-2<CR>gv=gv",      -- Command to execute
-    opts -- Options
+  "v",                -- Mode: Visual
+  "K",                -- Key to map
+  ":m '<-2<CR>gv=gv", -- Command to execute
+  opts                -- Options
 )
 
 -- Save and Quit
-api.nvim_set_keymap('n', '<leader>w', ':w<CR>', opts)                            -- Save file
-api.nvim_set_keymap('n', '<leader>q', ':q<CR>', opts)                            -- Quit file
-api.nvim_set_keymap('n', '<leader>wq', ':wq<CR>', opts)                          -- Save and quit
-api.nvim_set_keymap('n', '<leader>qq', ':qa!<CR>', opts)                         -- Quit all
-api.nvim_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts) -- Format file
+api.nvim_set_keymap('n', '<leader>w', ':w<CR>', opts)                                                                  -- Save file
+api.nvim_set_keymap('n', '<leader>q', ':q<CR>', opts)                                                                  -- Quit file
+api.nvim_set_keymap('n', '<leader>wq', ':wq<CR>', opts)                                                                -- Save and quit
+api.nvim_set_keymap('n', '<leader>qq', ':qa!<CR>', opts)                                                               -- Quit all
+api.nvim_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts)                                       -- Format file
 api.nvim_set_keymap('n', '<leader>s', '<cmd>lua vim.lsp.buf.format()<CR> | :w<CR>', { noremap = true, silent = true }) -- Format and save using lsp                                                  -- Format and save file
 -- api.nvim_set_keymap('n', '<leader>s', ':lua vim.cmd("Prettier") vim.cmd("w")<CR>', opts)
 
 -- Search
 api.nvim_set_keymap('n', '<leader>/', '/<CR>', opts) -- Start forward search
 api.nvim_set_keymap('n', '<leader>?', '?<CR>', opts) -- Start reverse search
-api.nvim_set_keymap('n', '<leader>n', 'n', opts)      -- Next search result
-api.nvim_set_keymap('n', '<leader>N', 'N', opts)      -- Previous search result
+api.nvim_set_keymap('n', '<leader>n', 'n', opts)     -- Next search result
+api.nvim_set_keymap('n', '<leader>N', 'N', opts)     -- Previous search result
 
 -- Undo/Redo
 api.nvim_set_keymap('n', 'u', 'u', opts)     -- Undo

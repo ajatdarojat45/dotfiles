@@ -19,7 +19,7 @@ vim.cmd([[
   Plug 'onsails/lspkind.nvim'
   Plug 'williamboman/mason.nvim'
   Plug 'williamboman/mason-lspconfig.nvim'
-  Plug 'zbirenbaum/copilot.lua'
+  Plug 'github/copilot.vim'
 
   " Code Formatting dan Linting
   Plug 'jose-elias-alvarez/null-ls.nvim'

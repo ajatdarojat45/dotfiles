@@ -5,7 +5,7 @@ require("bufferline").setup {
   options = {
     mode = "buffers",
     indicator = {
-      icon = '▎',
+      icon = '│',
       style = 'underline',
     },
     close_icon = '✗',

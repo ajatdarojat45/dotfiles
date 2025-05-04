@@ -4,8 +4,8 @@
 
 --require("indent-blankline").setup {
 --space_char_blankline = " ",
-  -- char = "|",
- -- show_current_context_start = true,
+-- char = "|",
+-- show_current_context_start = true,
 --  show_current_context = true,
 --  context_patterns = {
 --    "class", "return", "function", "method", "^if", "^while", "jsx_element", "^for", "^object",
@@ -23,12 +23,11 @@ local indent = "passive"
 local hooks = require("ibl.hooks")
 
 hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-	vim.api.nvim_set_hl(0, "focus", { fg = "#7486bd" })
-	vim.api.nvim_set_hl(0, "passive", { fg = "#41425e" })
+  vim.api.nvim_set_hl(0, "focus", { fg = "#7486bd" })
+  vim.api.nvim_set_hl(0, "passive", { fg = "#41425e" })
 end)
 
 require("ibl").setup({
-	scope = { highlight = focus },
-	indent = { highlight = indent }
+  scope = { highlight = focus },
+  indent = { highlight = indent, char = "│" }
 })
-

@@ -1,4 +1,3 @@
-
 vim.cmd([[
   call plug#begin('~/.config/nvim/plugged')
 
@@ -57,6 +56,7 @@ vim.cmd([[
   Plug 'valloric/vim-indent-guides'
   Plug 'goolord/alpha-nvim'
   Plug 'f-person/auto-dark-mode.nvim'
+  Plug 'Mofiqul/vscode.nvim'
 
   " Bracket & Delimiter Management
   Plug 'raimondi/delimitmate'

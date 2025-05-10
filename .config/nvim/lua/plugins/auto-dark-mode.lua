@@ -8,6 +8,6 @@ auto_dark_mode.setup({
   end,
   set_light_mode = function()
     vim.api.nvim_set_option_value('background', 'light', {})
-    vim.cmd('colorscheme tokyonight-day')
+    vim.cmd('colorscheme vscode')
   end,
 })

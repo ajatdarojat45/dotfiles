@@ -1,4 +1,4 @@
-theme = dark:tokyonight_moon,light:tokyonight_day
+theme = dark:tokyonight_moon,light:Raycast_Light
 font-size = 16
 cursor-style = block
 macos-titlebar-style = hidden 

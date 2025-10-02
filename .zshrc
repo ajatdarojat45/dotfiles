@@ -14,7 +14,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source /Users/ajatdarojat45/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /Users/ajatdarojat45/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -218,3 +218,27 @@ alias myip="curl ifconfig.me"
 alias ports="lsof -i -P -n | grep LISTEN"
 alias ping="ping -c 5"
 
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export PATH="$HOME/conda/bin:$PATH"
+
+# --- Fix Ctrl+C not sending SIGINT after macOS Tahoe update ---
+# Ensure Ctrl+C is bound as the interrupt character
+stty intr ^C
+
+# Remove any traps on SIGINT that may block Ctrl+C
+trap - INT

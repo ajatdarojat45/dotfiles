@@ -6,11 +6,16 @@ local cmp = require('cmp')
 local keymap = vim.keymap
 local api = vim.api
 
-require("mason-lspconfig").setup_handlers {
-  function(server_name) -- default handler (optional)
-    require("lspconfig")[server_name].setup {}
-  end,
-}
+--require("mason-lspconfig").setup_handlers {
+--  function(server_name) -- default handler (optional)
+--    require("lspconfig")[server_name].setup {}
+--  end,
+--}
+
+require("mason-lspconfig").setup({
+    ensure_installed = { "lua_ls", "ts_ls" }, -- contoh
+    automatic_installation = true,
+})
 
 lspconfig_defaults.capabilities = vim.tbl_deep_extend(
   'force',

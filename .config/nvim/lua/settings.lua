@@ -99,8 +99,9 @@ api.nvim_set_keymap('n', '<leader>q', ':q<CR>', opts)                           
 api.nvim_set_keymap('n', '<leader>wq', ':wq<CR>', opts)                                                                -- Save and quit
 api.nvim_set_keymap('n', '<leader>qq', ':qa!<CR>', opts)                                                               -- Quit all
 api.nvim_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts)                                       -- Format file
-api.nvim_set_keymap('n', '<leader>s', '<cmd>lua vim.lsp.buf.format()<CR> | :w<CR>', { noremap = true, silent = true }) -- Format and save using lsp                                                  -- Format and save file
--- api.nvim_set_keymap('n', '<leader>s', ':lua vim.cmd("Prettier") vim.cmd("w")<CR>', opts)
+-- api.nvim_set_keymap('n', '<leader>s', '<cmd>lua vim.lsp.buf.format()<CR> | :w<CR>', { noremap = true, silent = true }) -- Format and save using lsp                                                  -- Format and save file
+api.nvim_set_keymap('n', '<leader>sf', ':lua vim.cmd("Prettier") vim.cmd("w")<CR>', opts)
+api.nvim_set_keymap('n', '<leader>s', ':w!<CR>', opts)
 
 -- Search
 api.nvim_set_keymap('n', '<leader>/', '/<CR>', opts) -- Start forward search

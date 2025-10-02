@@ -21,7 +21,8 @@ vim.cmd([[
   Plug 'github/copilot.vim'
 
   " Code Formatting dan Linting
-  Plug 'jose-elias-alvarez/null-ls.nvim'
+  " Plug 'jose-elias-alvarez/null-ls.nvim'
+  Plug 'nvimtools/none-ls.nvim'
   Plug 'MunifTanjim/prettier.nvim'
 
   " Navigasi dan Pencarian

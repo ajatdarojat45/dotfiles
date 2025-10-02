@@ -1,4 +1,5 @@
-theme = dark:tokyonight_moon,light:Raycast_Light
+theme = dark:"Tokyonight Moon",light:"Raycast Light"
+#theme = Tokyonight Moon
 font-size = 16
 cursor-style = block
 macos-titlebar-style = hidden 

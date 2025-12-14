@@ -67,7 +67,6 @@ mas install 1510445899 || true # Meeter
 # Oh My Zsh
 #######################################
 echo "Installing Oh My Zsh..."
-
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   RUNZSH=no CHSH=no KEEP_ZSHRC=yes \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -104,29 +103,54 @@ cd "$(dirname "$DOTFILES_DIR")"
 stow --restow -t "$HOME" "$DOTFILES"
 
 #######################################
-# Start services
+# Start core services
 #######################################
 echo "Starting services (permissions may be required)..."
-
-# Window manager / UI
 brew services start skhd || true
 brew services start sketchybar || true
 brew services start borders || true
 brew services start svim || true
 
-# Databases
-brew services start mysql || true
-brew services start postgresql@16 || true
-brew services start redis || true
+#######################################
+# OPTIONAL SCRIPTS
+#######################################
+echo "Running optional setup scripts..."
 
-# MongoDB (optional)
-# brew services start mongodb-community || true
+SCRIPTS_DIR="$DOTFILES_DIR/scripts"
+
+run_optional() {
+  local name="$1"
+  local file="$SCRIPTS_DIR/$2"
+
+  if [ "${!name:-false}" = "true" ] && [ -f "$file" ]; then
+    echo "→ Running $2"
+    zsh "$file"
+  fi
+}
+
+# Terminals
+run_optional INSTALL_KITTY "kitty.sh"
+run_optional INSTALL_GHOSTTY "ghostty.sh"
+run_optional INSTALL_ALACRITTY "alacritty.sh"
+
+# Neovim extra setup
+run_optional INSTALL_NVIM "nvim.sh"
+
+# Docker databases
+run_optional INSTALL_DATABASES "databases.sh"
+
+# Sketchybar config
+run_optional INSTALL_SKETCHYBAR "sketchybar.sh"
 
 #######################################
 # Done
 #######################################
 echo "Setup complete 🚀"
-echo "NOTE:"
-echo "- Grant Accessibility permissions for yabai / skhd / svim"
-echo "- Disable SIP if you want advanced yabai features"
-echo "- MongoDB service is installed but NOT started by default"
+echo
+echo "Optional flags you can use:"
+echo "  INSTALL_KITTY=true"
+echo "  INSTALL_GHOSTTY=true"
+echo "  INSTALL_ALACRITTY=true"
+echo "  INSTALL_NVIM=true"
+echo "  INSTALL_DATABASES=true"
+echo "  INSTALL_SKETCHYBAR=true"

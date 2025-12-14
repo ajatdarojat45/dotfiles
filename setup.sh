@@ -45,7 +45,8 @@ brew install \
   stow tmux neovim spaceship \
   zsh-autosuggestions zsh-syntax-highlighting git-open \
   zoxide fzf yazi ffmpeg jq poppler fd ripgrep imagemagick \
-  btop lazygit mas
+  btop lazygit mas \
+  mysql-client@8.0 redis postgresql mongosh
 
 #######################################
 # Brew casks

@@ -17,9 +17,11 @@ run_or_start() {
 # MySQL (no password)
 #######################################
 run_or_start mysql \
-  -p 127.0.0.1:3306:3306 \
+  -p 3306:3306 \
   -e MYSQL_ALLOW_EMPTY_PASSWORD=yes \
-  mysql:8.4
+  -e MYSQL_ROOT_HOST=% \
+  mysql:8.0 \
+  --default-authentication-plugin=mysql_native_password
 
 #######################################
 # PostgreSQL (trust auth)

@@ -1,29 +1,49 @@
-local api = vim.api
+return {
+	"nvim-tree/nvim-tree.lua",
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+	},
 
-require("nvim-tree").setup({
-  sort_by = "case_sensitive",
-  view = {
-    --   adaptive_size = true,
-    width = 30,
-    --    mappings = {
-    --     list = {
-    --      { key = "u", action = "dir_up" },
-    --   },
-    --   },
-  },
-  renderer = {
-    group_empty = true,
-    indent_markers = {
-      enable = true,
-    }
-  },
-  filters = {
-    dotfiles = false,
-  },
-})
+	-- IMPORTANT: load on these triggers
+	cmd = {
+		"NvimTreeToggle",
+		"NvimTreeFocus",
+		"NvimTreeFindFile",
+		"NvimTreeRefresh",
+	},
 
--- nvim-tree
-api.nvim_set_keymap('n', '<leader>e', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
-api.nvim_set_keymap('n', '<leader>er', ':NvimTreeRefresh<CR>', { noremap = true, silent = true })
-api.nvim_set_keymap('n', '<leader>ee', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
-api.nvim_set_keymap('n', '<leader>ef', ':NvimTreeFindFile<CR>', { noremap = true, silent = true })
+	keys = {
+		{ "<leader>e", "<cmd>NvimTreeFocus<CR>", desc = "NvimTree Focus" },
+		{ "<leader>ee", "<cmd>NvimTreeToggle<CR>", desc = "NvimTree Toggle" },
+		{ "<leader>ef", "<cmd>NvimTreeFindFile<CR>", desc = "NvimTree Find File" },
+		{ "<leader>er", "<cmd>NvimTreeRefresh<CR>", desc = "NvimTree Refresh" },
+	},
+
+	config = function()
+		require("nvim-tree").setup({
+			sort_by = "case_sensitive",
+			view = {
+				width = 30,
+				side = "left",
+			},
+			git = {
+				enable = true,
+			},
+			renderer = {
+				group_empty = true,
+				highlight_git = true,
+				indent_markers = {
+					enable = true,
+				},
+				icons = {
+					show = {
+						git = true,
+					},
+				},
+			},
+			filters = {
+				dotfiles = false,
+			},
+		})
+	end,
+}

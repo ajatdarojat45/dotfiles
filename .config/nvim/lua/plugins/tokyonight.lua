@@ -1,6 +1,10 @@
-local cmd = vim.cmd
-
-require("tokyonight").setup()
-
--- colorscheme
-cmd("colorscheme tokyonight-moon")
+return {
+	"folke/tokyonight.nvim",
+	lazy = false, -- 🔴 must load immediately
+	priority = 1000,
+	config = function()
+		require("tokyonight").setup({
+			style = "moon",
+		})
+	end,
+}

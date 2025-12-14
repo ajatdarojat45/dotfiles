@@ -1,8 +1,22 @@
--- Enable Copilot suggestion
-vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+return {
+	"github/copilot.vim",
+	event = "InsertEnter",
+	init = function()
+		-- Disable default <Tab> mapping
+		vim.g.copilot_no_tab_map = true
 
--- Copilot filetypes settings
-vim.g.copilot_filetypes = {
-  ["*"] = true, -- Enable for all filetypes by default
+		-- Enable Copilot for all filetypes
+		vim.g.copilot_filetypes = {
+			["*"] = true,
+		}
+	end,
+	config = function()
+		-- Accept Copilot suggestion
+		vim.keymap.set(
+			"i",
+			"<C-J>",
+			'copilot#Accept("<CR>")',
+			{ silent = true, expr = true }
+		)
+	end,
 }

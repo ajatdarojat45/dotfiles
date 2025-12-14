@@ -4,12 +4,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # plugins
 plugins=(
   git
-  zsh-autosuggestions
   node
   npm
   github
-  zsh-syntax-highlighting
-  git-open
   web-search
 )
 
@@ -242,3 +239,6 @@ stty intr ^C
 
 # Remove any traps on SIGINT that may block Ctrl+C
 trap - INT
+source /opt/homebrew/opt/spaceship/spaceship.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

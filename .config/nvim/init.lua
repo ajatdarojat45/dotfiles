@@ -1,27 +1,47 @@
--- Load plugins
-require('plug')
+-----------------------------------------------------------
+-- Bootstrap lazy.nvim
+-----------------------------------------------------------
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
--- Load general settings
-require('settings')
+if not vim.uv.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
+		lazypath,
+	})
+end
 
--- Load individual plugin configurations
-require('plugins.bufferline')
-require('plugins.comment')
-require('plugins.harpoon')
-require('plugins.ibl')
-require('plugins.lspconfig')
-require('plugins.lualine')
-require('plugins.null-ls')
-require('plugins.alpha')
-require('plugins.cmp')
-require("plugins.nvim-tree")
-require("plugins.nvim-treesitter")
-require("plugins.nvim-ts-autotag")
-require("plugins.override")
-require("plugins.prettier")
-require("plugins.telescope")
-require("plugins.todo-comments")
-require("plugins.tokyonight")
-require("plugins.ayu")
-require("plugins.auto-dark-mode")
-require("plugins.copilot")
+vim.opt.rtp:prepend(lazypath)
+
+-----------------------------------------------------------
+-- Core settings (NO plugins here)
+-----------------------------------------------------------
+require("settings")
+
+-----------------------------------------------------------
+-- Plugins
+-----------------------------------------------------------
+require("lazy").setup({
+	spec = {
+		{ import = "plugins" },
+	},
+	ui = {
+		border = "rounded",
+	},
+	change_detection = {
+		notify = false,
+	},
+})
+
+-----------------------------------------------------------
+-- 🔴 APPLY COLORSCHEME AFTER lazy loads plugins
+-- (NO flicker, plugin is available)
+-----------------------------------------------------------
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
+
+-- Safe apply (prevents errors)
+pcall(vim.cmd.colorscheme, "tokyonight-moon")

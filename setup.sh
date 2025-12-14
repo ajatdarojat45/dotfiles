@@ -42,7 +42,7 @@ brew tap mongodb/brew
 echo "Installing Brew Formulae..."
 brew install \
   skhd sketchybar borders yabai svim \
-  stow tmux neovim \
+  stow tmux neovim spaceship \
   zsh-autosuggestions zsh-syntax-highlighting git-open \
   zoxide fzf yazi ffmpeg jq poppler fd ripgrep imagemagick \
   btop lazygit mas \
@@ -56,7 +56,7 @@ brew install \
 #######################################
 echo "Installing Brew Casks..."
 brew install --cask \
-  arc spaceship \
+  arc \
   raycast termius datagrip orbstack \
   zoom discord megasync google-drive instantview \
   sf-symbols font-hack-nerd-font

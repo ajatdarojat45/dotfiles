@@ -35,13 +35,3 @@ require("lazy").setup({
 		notify = false,
 	},
 })
-
------------------------------------------------------------
--- 🔴 APPLY COLORSCHEME AFTER lazy loads plugins
--- (NO flicker, plugin is available)
------------------------------------------------------------
-vim.opt.termguicolors = true
-vim.opt.background = "dark"
-
--- Safe apply (prevents errors)
-pcall(vim.cmd.colorscheme, "tokyonight-moon")

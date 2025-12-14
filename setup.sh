@@ -53,7 +53,7 @@ brew install \
 echo "Installing Brew Casks..."
 brew install --cask \
   arc \
-  raycast termius datagrip orbstack \
+  raycast termius datagrip orbstack beekeeper-studio \
   zoom discord megasync google-drive instantview \
   sf-symbols font-hack-nerd-font
 

@@ -33,10 +33,21 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
 #######################################
-# Databases
+# Database Clients (Docker ONLY)
 #######################################
+# ✅ MySQL client (compatible with MySQL 8.x container)
+export PATH="/opt/homebrew/opt/mysql-client@8.0/bin:$PATH"
+
+# ✅ PostgreSQL client
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
-export PATH="/opt/homebrew/opt/mysql/bin:$PATH"
+
+#######################################
+# Docker Database Shortcuts
+#######################################
+alias mysql-docker='mysql --protocol=TCP -h 127.0.0.1 -P 3306 -u root -p'
+alias pg-docker='psql -h 127.0.0.1 -p 5432 -U postgres'
+alias redis-docker='redis-cli -h 127.0.0.1 -p 6379'
+alias mongo-docker='mongosh "mongodb://127.0.0.1:27017"'
 
 #######################################
 # Android SDK
@@ -137,7 +148,6 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias c="clear"
 alias cls="clear"
-alias mkdir="mkdir -p"
 
 alias rm="rm -i"
 alias cp="cp -i"
@@ -146,6 +156,9 @@ alias mv="mv -i"
 alias l="ls -lah"
 alias ll="ls -lAh"
 alias ls="ls -G"
+
+alias x="exit"
+alias q="exit"
 
 alias t="tmux"
 alias v="nvim"

@@ -18,6 +18,12 @@ opt.shiftround = true
 opt.number = true
 opt.relativenumber = true
 opt.cursorline = true
+opt.guicursor = table.concat({
+  "n-v-c:block",        -- Normal / Visual / Command
+  "i-ci:block-blinkon1",-- Insert (I-beam)
+  "r-cr:hor20",         -- Replace
+  "o:block",            -- Operator pending
+}, ",")
 opt.signcolumn = "yes"
 
 opt.termguicolors = true

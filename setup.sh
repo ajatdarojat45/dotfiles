@@ -65,6 +65,7 @@ echo "Installing Mac App Store Apps..."
 mas install 1510445899 || true # Meeter
 mas install 441258766 || true # Magnet
 mas install 1221250572 || true # Xnip
+mas install 497799835 || true # Xcode
 
 #######################################
 # Oh My Zsh

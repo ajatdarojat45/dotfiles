@@ -55,7 +55,7 @@ echo "Installing Brew Casks..."
 brew install --cask \
   arc \
   raycast termius datagrip orbstack beekeeper-studio \
-  zoom discord megasync google-drive instantview \
+  zoom discord megasync google-drive instantview time-out \
   sf-symbols font-hack-nerd-font
 
 #######################################
@@ -63,6 +63,8 @@ brew install --cask \
 #######################################
 echo "Installing Mac App Store Apps..."
 mas install 1510445899 || true # Meeter
+mas install 441258766 || true # Magnet
+mas install 1221250572 || true # Xnip
 
 #######################################
 # Oh My Zsh

@@ -4,3 +4,4 @@ github-copilot
 selected
 raycast
 configstore
+.config/nvim/lazy-lock.json

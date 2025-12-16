@@ -1,3 +1,16 @@
-require('Comment').setup()
-
-vim.api.nvim_set_keymap('n', '<leader>cc', '<Plug>(comment_toggle_linewise_current)', {})
+return {
+	"numToStr/Comment.nvim",
+	event = "VeryLazy",
+	keys = {
+		{
+			"<leader>cc",
+			function()
+				require("Comment.api").toggle.linewise.current()
+			end,
+			desc = "Toggle comment",
+		},
+	},
+	config = function()
+		require("Comment").setup()
+	end,
+}

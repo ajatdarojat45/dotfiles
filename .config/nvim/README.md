@@ -35,22 +35,18 @@
 git clone https://github.com/ajatdarojat45/ajats-nvim-config.git ~/.config/nvim
 ```
 
-#### Install vim-plug in your machine
-
-> vim-plug is a minimalist Vim plugin manager.
-
-You can follow this link: https://github.com/junegunn/vim-plug
-
 #### Open nvim
 
 ```sh
 nvim
 ```
 
+> The first launch bootstraps [lazy.nvim](https://github.com/folke/lazy.nvim) automatically.
+
 #### Install plugins
 
 ```
-:PlugInstall
+:Lazy sync
 ```
 
 #### Install language parsers
@@ -60,14 +56,6 @@ nvim
 ```
 
 Check supported languages [here](https://github.com/nvim-treesitter/nvim-treesitter#supported-languages)
-
-#### Install coc extensions
-
-```
-:CocInstall <extensions_to_install>
-```
-
-Check extentions list [here](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
 
 #### Install MarkdownPreview
 

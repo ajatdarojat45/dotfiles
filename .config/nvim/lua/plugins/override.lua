@@ -1,20 +1,21 @@
-local M = {}
-
-M.nvimtree = {
-  git = {
-    enable = true,
-  },
-  renderer = {
-    highlight_git = true,
-    icons = {
-      show = {
-        git = true,
+return {
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      git = {
+        enable = true,
+      },
+      renderer = {
+        highlight_git = true,
+        icons = {
+          show = {
+            git = true,
+          },
+        },
+      },
+      view = {
+        side = "right",
       },
     },
   },
-  view = {
-    side = "right",
-  },
 }
-
-return M

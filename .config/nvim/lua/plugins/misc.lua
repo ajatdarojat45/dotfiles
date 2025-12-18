@@ -11,5 +11,4 @@ return {
   { "airblade/vim-gitgutter", event = "BufReadPost" },
   { "kdheepak/lazygit.nvim", cmd = "LazyGit" },
   { "raimondi/delimitmate", event = "InsertEnter" },
-  { "christoomey/vim-tmux-navigator", lazy = true },
 }

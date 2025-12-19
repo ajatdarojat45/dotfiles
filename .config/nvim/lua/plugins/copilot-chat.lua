@@ -114,7 +114,7 @@ return {
                     vim.api.nvim_chan_send(vim.b[term_bufnr].terminal_job_id, "\t")
                     
                     -- Ctrl+U 5 times to clear description thoroughly
-                    for i = 1, 5 do
+                    for i = 1, 10 do
                       vim.api.nvim_chan_send(vim.b[term_bufnr].terminal_job_id, "\x15")
                     end
                     

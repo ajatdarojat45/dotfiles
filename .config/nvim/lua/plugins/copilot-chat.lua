@@ -83,6 +83,15 @@ return {
               -- Copy to clipboard
               vim.fn.setreg("+", commit_msg)
               
+              -- Clear and write fresh message to .git/COMMIT_EDITMSG
+              local commit_editmsg = git_root .. "/.git/COMMIT_EDITMSG"
+              os.remove(commit_editmsg) -- Remove old file first
+              local f = io.open(commit_editmsg, "w")
+              if f then
+                f:write(commit_msg)
+                f:close()
+              end
+              
               -- Close the chat window
               vim.cmd("close")
               
@@ -90,7 +99,37 @@ return {
               vim.cmd("terminal lazygit")
               vim.cmd("startinsert")
               
-              vim.notify("Commit message copied to clipboard!", vim.log.levels.INFO)
+              -- Send 'c' keystroke to open commit dialog after a short delay
+              vim.defer_fn(function()
+                local term_bufnr = vim.fn.bufnr("%")
+                if vim.b[term_bufnr].terminal_job_id then
+                  vim.api.nvim_chan_send(vim.b[term_bufnr].terminal_job_id, "c")
+                  
+                  -- Clear all fields thoroughly then paste
+                  vim.defer_fn(function()
+                    -- Ctrl+U to clear summary
+                    vim.api.nvim_chan_send(vim.b[term_bufnr].terminal_job_id, "\x15")
+                    
+                    -- Tab to next field
+                    vim.api.nvim_chan_send(vim.b[term_bufnr].terminal_job_id, "\t")
+                    
+                    -- Ctrl+U 5 times to clear description thoroughly
+                    for i = 1, 5 do
+                      vim.api.nvim_chan_send(vim.b[term_bufnr].terminal_job_id, "\x15")
+                    end
+                    
+                    -- Tab back to summary
+                    vim.api.nvim_chan_send(vim.b[term_bufnr].terminal_job_id, "\t")
+                    
+                    -- Paste
+                    vim.defer_fn(function()
+                      vim.api.nvim_chan_send(vim.b[term_bufnr].terminal_job_id, "\x1b[200~" .. commit_msg .. "\x1b[201~")
+                    end, 100)
+                  end, 500)
+                end
+              end, 800)
+              
+              vim.notify("Commit message ready - review in lazygit and press Enter to commit", vim.log.levels.INFO)
             end, 2000)
           end,
         }

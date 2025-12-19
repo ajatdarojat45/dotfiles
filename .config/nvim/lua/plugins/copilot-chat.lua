@@ -31,7 +31,7 @@ return {
       local staged_diff = vim.fn.system("cd " .. git_root .. " && git diff --cached")
       
       if staged_diff == "" or staged_diff:match("^fatal:") then
-        vim.notify("No staged changes found. Use 'git add' first.", vm.log.levels.WARN)
+        vim.notify("No staged changes found. Use 'git add' first.", vim.log.levels.WARN)
         return
       end
       
@@ -97,6 +97,10 @@ return {
               
               -- Open lazygit in a terminal
               vim.cmd("terminal lazygit")
+              
+              -- Auto-close terminal when lazygit exits
+              vim.cmd("autocmd TermClose <buffer> bdelete!")
+              
               vim.cmd("startinsert")
               
               -- Send 'c' keystroke to open commit dialog after a short delay

@@ -3,7 +3,7 @@ return {
   event = "VeryLazy",
   keys = {
     {
-      "<leader>//",
+      "<leader>fl",
       function()
         require("flash").jump({ search = { forward = true, wrap = false, multi_window = false } })
       end,

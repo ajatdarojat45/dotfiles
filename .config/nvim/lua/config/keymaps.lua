@@ -43,7 +43,7 @@ keymap.set("n", "<leader>sf", ':lua vim.cmd("Prettier") vim.cmd("w")<CR>', opts)
 keymap.set("n", "<leader>s", ":w!<CR>", opts) -- Save file
 
 -- Search
-keymap.set("n", "<C-/>", ":noh<CR>", opts) -- Clear search highlight
+keymap.set("n", "<leader>/", ":noh<CR>", opts) -- Clear search highlight
 keymap.set("n", "n", "nzzzv", opts)            -- Next search result (centered)
 keymap.set("n", "N", "Nzzzv", opts)            -- Previous search result (centered)
 

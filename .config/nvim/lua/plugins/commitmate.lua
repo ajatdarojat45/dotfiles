@@ -12,6 +12,6 @@ return {
     })
   end,
   keys = {
-    { "<leader>gc", "<cmd>CommitMate<cr>", desc = "Generate commit message" },
+    { "<leader>cm", "<cmd>CommitMate<cr>", desc = "Generate commit message" },
   },
 }

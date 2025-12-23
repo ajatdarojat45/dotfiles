@@ -1,10 +1,10 @@
 return {
 	"folke/tokyonight.nvim",
-  lazy = true,
+	branch = "main",
+	lazy = false,
 	priority = 1000,
 	config = function()
-		require("tokyonight").setup({
-			style = "moon",
-		})
+		require("tokyonight").setup()
+		vim.cmd("colorscheme tokyonight-moon")
 	end,
 }

@@ -1,22 +1,13 @@
 return {
-	"github/copilot.vim",
-	event = "InsertEnter",
-	init = function()
-		-- Disable default <Tab> mapping
-		vim.g.copilot_no_tab_map = true
+  "github/copilot.vim",
+  event = "InsertEnter",
+  config = function()
+    vim.g.copilot_enabled = false
+    vim.g.copilot_no_tab_map = true
+    vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
-		-- Enable Copilot for all filetypes
-		vim.g.copilot_filetypes = {
-			["*"] = true,
-		}
-	end,
-	config = function()
-		-- Accept Copilot suggestion
-		vim.keymap.set(
-			"i",
-			"<C-J>",
-			'copilot#Accept("<CR>")',
-			{ silent = true, expr = true }
-		)
-	end,
+    vim.g.copilot_filetypes = {
+      ["*"] = true,
+    }
+  end,
 }

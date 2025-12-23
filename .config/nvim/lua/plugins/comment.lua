@@ -1,14 +1,16 @@
 return {
 	"numToStr/Comment.nvim",
-	event = { "BufReadPost", "BufNewFile" },
+	event = "VeryLazy",
+	keys = {
+		{
+			"<leader>cc",
+			function()
+				require("Comment.api").toggle.linewise.current()
+			end,
+			desc = "Toggle comment",
+		},
+	},
 	config = function()
 		require("Comment").setup()
-
-		vim.keymap.set(
-			"n",
-			"<leader>cc",
-			"<Plug>(comment_toggle_linewise_current)",
-			{ silent = true }
-		)
 	end,
 }

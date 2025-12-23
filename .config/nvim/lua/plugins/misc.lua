@@ -1,0 +1,14 @@
+return {
+  { "nvim-lua/plenary.nvim", lazy = true },
+  { "nvim-tree/nvim-web-devicons", lazy = true },
+  { "mustache/vim-mustache-handlebars", event = "VeryLazy" },
+  { "hrsh7th/vim-vsnip", event = "InsertEnter" },
+  { "onsails/lspkind.nvim", lazy = true },
+  { "wakatime/vim-wakatime", lazy = true },
+  { "terryma/vim-multiple-cursors", event = "VeryLazy" },
+  { "iamcco/markdown-preview.nvim", ft = { "markdown" }, build = "cd app && yarn install" },
+  { "tpope/vim-fugitive", cmd = { "Git", "G" } },
+  { "airblade/vim-gitgutter", event = "BufReadPost" },
+  { "kdheepak/lazygit.nvim", cmd = "LazyGit" },
+  { "raimondi/delimitmate", event = "InsertEnter" },
+}

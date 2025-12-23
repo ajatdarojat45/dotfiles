@@ -1,154 +1,91 @@
 return {
-	"nvim-treesitter/nvim-treesitter",
-	build = ":TSUpdate",
-	event = { "BufReadPost", "BufNewFile" },
-	dependencies = {
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		"p00f/nvim-ts-rainbow",
-	},
-	config = function()
-		require("nvim-treesitter.configs").setup({
-			ensure_installed = {
-				"bash",
-				"css",
-				"dockerfile",
-				"editorconfig",
-				"gitignore",
-				"go",
-				"html",
-				"http",
-				"java",
-				"javascript",
-				"json",
-				"lua",
-				"nginx",
-				"php",
-				"python",
-				"regex",
-				"sql",
-				"tmux",
-				"typescript",
-				"vim",
-				"yaml",
-				"markdown",
-			},
-			sync_install = true,
-			auto_install = true,
+  "nvim-treesitter/nvim-treesitter",
+  build = ":TSUpdate",
+  lazy = false,
+  priority = 900,
+  config = function()
+    -- Ensure parsers are installed
+    local ensure_installed = {
+      "bash",
+      "css",
+      "dockerfile",
+      "editorconfig",
+      "gitignore",
+      "go",
+      "gomod",
+      "gosum",
+      "html",
+      "javascript",
+      "json",
+      "lua",
+      "php",
+      "python",
+      "tmux",
+      "typescript",
+      "tsx",
+      "vim",
+      "vimdoc",
+      "markdown",
+      "markdown_inline",
+      "yaml",
+      "toml",
+    }
 
-			highlight = {
-				enable = true,
-				additional_vim_regex_highlighting = false,
-			},
+    -- Auto-install missing parsers
+    for _, lang in ipairs(ensure_installed) do
+      local ok = pcall(vim.treesitter.language.inspect, lang)
+      if not ok then
+        pcall(function()
+          vim.cmd("TSInstall " .. lang)
+        end)
+      end
+    end
 
-			indent = {
-				enable = true,
-			},
+    -- Enable treesitter highlight for all buffers
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "*",
+      callback = function(args)
+        local buf = args.buf
+        local ft = vim.bo[buf].filetype
+        if ft == "" then
+          return
+        end
+        local lang = vim.treesitter.language.get_lang(ft) or ft
+        local ok = pcall(vim.treesitter.language.inspect, lang)
+        if ok then
+          pcall(vim.treesitter.start, buf, lang)
+        end
+      end,
+    })
 
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "gnn",
-					node_incremental = "grn",
-					node_decremental = "grm",
-					scope_incremental = "grc",
-				},
-			},
+    -- Incremental selection keymaps (built-in)
+    vim.keymap.set("n", "gnn", function()
+      require("nvim-treesitter.incremental_selection").init_selection()
+    end, { desc = "Init treesitter selection" })
+    vim.keymap.set("x", "grn", function()
+      require("nvim-treesitter.incremental_selection").node_incremental()
+    end, { desc = "Increment node selection" })
+    vim.keymap.set("x", "grm", function()
+      require("nvim-treesitter.incremental_selection").node_decremental()
+    end, { desc = "Decrement node selection" })
+    vim.keymap.set("x", "grc", function()
+      require("nvim-treesitter.incremental_selection").scope_incremental()
+    end, { desc = "Increment scope selection" })
 
-			rainbow = {
-				enable = true,
-				extended_mode = true,
-				max_file_lines = nil,
-				colors = {
-					"#ff6188",
-					"#fc9867",
-					"#ffd866",
-					"#a9dc76",
-					"#78dce8",
-					"#ab9df2",
-				},
-			},
+    -- LSP diagnostic config
+    vim.diagnostic.config({
+      underline = true,
+      virtual_text = {
+        spacing = 5,
+        severity = { min = vim.diagnostic.severity.ERROR },
+      },
+      update_in_insert = true,
+    })
 
-			refactor = {
-				highlight_definitions = { enable = true },
-				highlight_current_scope = { enable = true },
-				smart_rename = {
-					enable = true,
-					keymaps = {
-						smart_rename = "grr",
-					},
-				},
-				navigation = {
-					enable = true,
-					keymaps = {
-						goto_definition = "gnd",
-						list_definitions = "gnD",
-						list_definitions_toc = "gO",
-						goto_next_usage = "<a-*>",
-						goto_previous_usage = "<a-#>",
-					},
-				},
-			},
-
-			textobjects = {
-				select = {
-					enable = true,
-					lookahead = true,
-					keymaps = {
-						["af"] = "@function.outer",
-						["if"] = "@function.inner",
-						["ac"] = "@class.outer",
-						["ic"] = "@class.inner",
-					},
-				},
-				move = {
-					enable = true,
-					set_jumps = true,
-					goto_next_start = {
-						["]m"] = "@function.outer",
-						["]]"] = "@class.outer",
-					},
-					goto_next_end = {
-						["]M"] = "@function.outer",
-						["]["] = "@class.outer",
-					},
-					goto_previous_start = {
-						["[m"] = "@function.outer",
-						["[["] = "@class.outer",
-					},
-					goto_previous_end = {
-						["[M"] = "@function.outer",
-						["[]"] = "@class.outer",
-					},
-				},
-				swap = {
-					enable = true,
-					swap_next = {
-						["<leader>a"] = "@parameter.inner",
-					},
-					swap_previous = {
-						["<leader>A"] = "@parameter.inner",
-					},
-				},
-			},
-		})
-
-		----------------------------------------------------------------
-		-- Diagnostics configuration (modern API)
-		----------------------------------------------------------------
-		vim.diagnostic.config({
-			underline = true,
-			virtual_text = {
-				spacing = 5,
-				severity = { min = vim.diagnostic.severity.ERROR },
-			},
-			update_in_insert = true,
-		})
-
-		----------------------------------------------------------------
-		-- Treesitter-based folding
-		----------------------------------------------------------------
-		vim.wo.foldmethod = "expr"
-		vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-		vim.opt.foldlevel = 99
-	end,
+    -- Folding with treesitter
+    vim.wo.foldmethod = "expr"
+    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    vim.opt.foldlevel = 99
+  end,
 }
+

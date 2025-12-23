@@ -2,6 +2,10 @@
 
 Opinionated macOS setup and dotfiles managed via Homebrew, GNU Stow, and Oh My Zsh. The main entrypoint is the setup script, with optional installers for terminals, Neovim, databases, and SketchyBar.
 
+## Preview
+
+![Preview](assets/preview.png)
+
 ## Quick Start
 
 Run the setup script. It will install Xcode CLI Tools (if missing), Homebrew, core formulae and casks, Oh My Zsh, stow your dotfiles, and start core services.

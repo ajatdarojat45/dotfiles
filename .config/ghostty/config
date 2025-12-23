@@ -1,4 +1,4 @@
-theme = dark:"Tokyonight Moon",light:"Raycast Light"
+theme = dark:"Tokyonight Moon",light:"Tokyonight Day"
 #theme = Tokyonight Moon
 font-size = 16
 cursor-style = block

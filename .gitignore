@@ -5,3 +5,4 @@ selected
 raycast
 configstore
 .config/nvim/lazy-lock.json
+lazy-lock.json
